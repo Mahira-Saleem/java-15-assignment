@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dashboard - Employee Management</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <!-- Vertical Sidebar -->
+  <div class="sidebar">
+    <div>
+      <h2>Stratos EMS</h2>
+      <div class="menu">
+        <a href="#">Dashboard</a>
+        <a href="#" class="active">Employees</a>
+        <a href="#">Departments</a>
+        <a href="#">Settings</a>
+      </div>
+    </div>
+    <button class="logout-btn" onclick="logout()">Logout</button>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="header">
+      <h1>Employee List</h1>
+      <button class="add-btn" onclick="toggleForm()">+ Add Employee</button>
+    </div>
+
+    <!-- Inline Add Employee Form -->
+    <div id="addForm" class="form-container">
+      <h3>Add New Employee</h3><br>
+      <input type="text" id="empName" placeholder="Name" />
+      <input type="text" id="empRole" placeholder="Role/Designation" />
+      <input type="text" id="empDept" placeholder="Department" />
+      <input type="text" id="empSalary" placeholder="Salary" />
+      <button class="save-btn" onclick="addEmployee()">Save</button>
+    </div>
+
+    <!-- Employee Table -->
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Role</th>
+          <th>Department</th>
+          <th>Salary</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="employeeTableBody">
+        <!-- yhn employees ka data load hoga -->
+      </tbody>
+    </table>
+  </div>
+
+<script src="add.js"></script>
+</body>
+</html>
