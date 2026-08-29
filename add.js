@@ -61,6 +61,76 @@
       const emp = employees[index];
       alert(`Employee Details:\n\nName: ${emp.name}\nRole: ${emp.role}\nDepartment: ${emp.dept}\nSalary: ${emp.salary}`);
     }
+    
+        let editIndex = null;
+    
+    // 1. Updated
+    function renderEmployees() {
+      const tbody = document.getElementById('employeeTableBody');
+      tbody.innerHTML = "";
+    
+      employees.forEach((emp, index) => {
+        tbody.innerHTML += `
+          <tr>
+            <td>${emp.name}</td>
+            <td>${emp.role}</td>
+            <td>${emp.dept}</td>
+            <td>${emp.salary}</td>
+            <td>
+              <button class="action-btn view-btn" onclick="viewDetails(${index})">View</button>
+              <button class="action-btn" style="background:#f59e0b; color:white;" onclick="editEmployee(${index})">Edit</button>
+              <button class="action-btn delete-btn" onclick="deleteEmployee(${index})">Delete</button>
+            </td>
+          </tr>
+        `;
+      });
+    }
+    
+    // 2. Edit Function 
+    function editEmployee(index) {
+      editIndex = index; 
+      const emp = employees[index];
+    
+      // Form details fill 
+      document.getElementById('empName').value = emp.name;
+      document.getElementById('empRole').value = emp.role;
+      document.getElementById('empDept').value = emp.dept;
+      document.getElementById('empSalary').value = emp.salary;
+    
+      // Form open 
+      document.getElementById('addForm').style.display = 'block';
+    }
+    
+    // 3. Updated
+    function addEmployee() {
+      const name = document.getElementById('empName').value;
+      const role = document.getElementById('empRole').value;
+      const dept = document.getElementById('empDept').value;
+      const salary = document.getElementById('empSalary').value;
+    
+      if (!name || !role || !dept || !salary) {
+        alert("Please fill all fields!");
+        return;
+      }
+    
+      if (editIndex === null) {
+        // Employee Add 
+        employees.push({ id: Date.now(), name, role, dept, salary });
+      } else {
+        // Existing Employee Update 
+        employees[editIndex] = { id: employees[editIndex].id, name, role, dept, salary };
+        editIndex = null; //
+      }
+    
+      // Inputs clear
+      document.getElementById('empName').value = '';
+      document.getElementById('empRole').value = '';
+      document.getElementById('empDept').value = '';
+      document.getElementById('empSalary').value = '';
+    
+      toggleForm();
+      renderEmployees();
+    }
 
     // Delete Employee
     function deleteEmployee(index) {
@@ -78,74 +148,3 @@
     // Load initial data on startup
     renderEmployees();
 
-
-// Global variable taa ke pata chale ke hum Edit kar rahe hain ya Naya Add kar rahe hain
-let editIndex = null;
-
-// 1. Updated renderEmployees Function (Edit button ke saath)
-function renderEmployees() {
-  const tbody = document.getElementById('employeeTableBody');
-  tbody.innerHTML = "";
-
-  employees.forEach((emp, index) => {
-    tbody.innerHTML += `
-      <tr>
-        <td>${emp.name}</td>
-        <td>${emp.role}</td>
-        <td>${emp.dept}</td>
-        <td>${emp.salary}</td>
-        <td>
-          <button class="action-btn view-btn" onclick="viewDetails(${index})">View</button>
-          <button class="action-btn" style="background:#f59e0b; color:white;" onclick="editEmployee(${index})">Edit</button>
-          <button class="action-btn delete-btn" onclick="deleteEmployee(${index})">Delete</button>
-        </td>
-      </tr>
-    `;
-  });
-}
-
-// 2. Edit Function (Form mein data populate karne ke liye)
-function editEmployee(index) {
-  editIndex = index; // Save kar liya ke kis index ko edit karna hai
-  const emp = employees[index];
-
-  // Form ke input boxes mein purani details fill kar dein
-  document.getElementById('empName').value = emp.name;
-  document.getElementById('empRole').value = emp.role;
-  document.getElementById('empDept').value = emp.dept;
-  document.getElementById('empSalary').value = emp.salary;
-
-  // Form open kar dein
-  document.getElementById('addForm').style.display = 'block';
-}
-
-// 3. Updated addEmployee Function (Add aur Edit dono handle karega)
-function addEmployee() {
-  const name = document.getElementById('empName').value;
-  const role = document.getElementById('empRole').value;
-  const dept = document.getElementById('empDept').value;
-  const salary = document.getElementById('empSalary').value;
-
-  if (!name || !role || !dept || !salary) {
-    alert("Please fill all fields!");
-    return;
-  }
-
-  if (editIndex === null) {
-    // Naya Employee Add karo
-    employees.push({ id: Date.now(), name, role, dept, salary });
-  } else {
-    // Existing Employee Update karo
-    employees[editIndex] = { id: employees[editIndex].id, name, role, dept, salary };
-    editIndex = null; // Edit mode khatam
-  }
-
-  // Inputs clear karo
-  document.getElementById('empName').value = '';
-  document.getElementById('empRole').value = '';
-  document.getElementById('empDept').value = '';
-  document.getElementById('empSalary').value = '';
-
-  toggleForm();
-  renderEmployees();
-}
