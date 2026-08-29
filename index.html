@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Document</title>
+</head>
+<body>
+      <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login - EMS</title>
+  <style>
+    body { font-family: Arial, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; background: #0d1117; color: #fff; margin: 0; }
+    .login-card { background: #161b22; padding: 30px; border-radius: 10px; width: 300px; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+    input { width: 100%; padding: 10px; margin: 10px 0; border-radius: 5px; border: 1px solid #30363d; background: #0d1117; color: #fff; box-sizing: border-box; }
+    button { width: 100%; padding: 10px; background: #238636; border: none; color: white; border-radius: 5px; cursor: pointer; font-weight: bold; }
+    button:hover { background: #2ea043; }
+  </style>
+</head>
+<body>
+
+  <div class="login-card">
+    <h2>EMS Login</h2>
+    <input type="text" id="username" placeholder="Username (admin)" />
+    <input type="password" id="password" placeholder="Password (1234)" />
+    <button onclick="handleLogin()">Login</button>
+  </div>
+
+  <script>
+    function handleLogin() {
+      const user = document.getElementById('username').value;
+      const pass = document.getElementById('password').value;
+
+      if(user === "admin" && pass === "1234") {
+        alert("Login Successful!");
+        window.location.href = "dashboard.html"; // Dashboard page par le jaye ga
+      } else {
+        alert("Invalid Username or Password!");
+      }
+    }
+  </script>
+</body>
+</html>
