@@ -108,7 +108,7 @@ function deleteEmployee(index) {
 
 // Logout Function
 function logout() {
-  window.location.href = "login.html";
+  window.location.href = "index.html";
 }
 
 document.addEventListener('DOMContentLoaded', () => {
