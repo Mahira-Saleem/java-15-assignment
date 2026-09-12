@@ -1,311 +1,456 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Auth - EMS</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      background: #0d1117;
-      color: #fff;
-      margin: 0;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlowHCM - Best HR Software</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    .hidden {
-      display: none !important;
-    }
-
-    /* --- LOGIN STYLES --- */
-    .login-form {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      background-color: #ffffff;
-      padding: 30px;
-      width: 350px;
-      border-radius: 20px;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    }
-
-    .login-form .flex-column > label {
-      color: #151717;
-      font-weight: 600;
-    }
-
-    .login-form .inputForm {
-      border: 1.5px solid #ecedec;
-      border-radius: 10px;
-      height: 45px;
-      display: flex;
-      align-items: center;
-      padding-left: 10px;
-      transition: 0.2s ease-in-out;
-    }
-
-    .login-form .input {
-      margin-left: 10px;
-      border: none;
-      width: 85%;
-      height: 100%;
-      outline: none;
-      color: #151717;
-    }
-
-    .login-form .inputForm:focus-within {
-      border: 1.5px solid #2d79f3;
-    }
-
-    .login-form .flex-row {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .login-form .flex-row > div > label {
-      font-size: 14px;
-      color: black;
-    }
-
-    .login-form .span-btn {
-      font-size: 14px;
-      color: #2d79f3;
-      font-weight: 500;
-      cursor: pointer;
-      background: none;
-      border: none;
-      padding: 0;
-    }
-
-    .login-form .button-submit {
-      margin: 15px 0 10px 0;
-      background-color: #151717;
-      border: none;
-      color: white;
-      font-size: 15px;
-      font-weight: 500;
-      border-radius: 10px;
-      height: 45px;
-      width: 100%;
-      cursor: pointer;
-    }
-
-    .login-form .p {
-      text-align: center;
-      color: black;
-      font-size: 14px;
-      margin: 5px 0;
-    }
-
-    /* --- REGISTER STYLES --- */
-    .register-form {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      width: 350px;
-      background-color: #fff;
-      padding: 25px;
-      border-radius: 20px;
-      position: relative;
-      box-sizing: border-box;
-    }
-
-    .register-form .title {
-      font-size: 26px;
-      color: royalblue;
-      font-weight: 600;
-      position: relative;
-      display: flex;
-      align-items: center;
-      padding-left: 25px;
-      margin: 0;
-    }
-
-    .register-form .title::before, .register-form .title::after {
-      position: absolute;
-      content: "";
-      border-radius: 50%;
-      left: 0px;
-    }
-
-    .register-form .title::before {
-      width: 16px;
-      height: 16px;
-      background-color: royalblue;
-    }
-
-    .register-form .title::after {
-      width: 16px;
-      height: 16px;
-      background-color: royalblue;
-      animation: pulse 1s linear infinite;
-    }
-
-    .register-form .message, .register-form .signin {
-      color: rgba(88, 87, 87, 0.822);
-      font-size: 14px;
-      margin: 2px 0;
-    }
-
-    .register-form .signin {
-      text-align: center;
-    }
-
-    .register-form .flex {
-      display: flex;
-      width: 100%;
-      gap: 6px;
-    }
-
-    .register-form label {
-      position: relative;
-      width: 100%;
-    }
-
-    .register-form label .input {
-      width: 100%;
-      padding: 10px;
-      outline: 0;
-      border: 1px solid rgba(105, 105, 105, 0.397);
-      border-radius: 10px;
-      box-sizing: border-box;
-    }
-
-    .register-form label .input + span {
-      position: absolute;
-      left: 10px;
-      top: 10px;
-      color: grey;
-      font-size: 0.9em;
-      transition: 0.3s ease;
-      pointer-events: none;
-    }
-
-    .register-form label .input:focus + span,
-    .register-form label .input:not(:placeholder-shown) + span {
-      top: -8px;
-      left: 8px;
-      font-size: 0.7em;
-      font-weight: 600;
-      background-color: white;
-      padding: 0 4px;
-      color: royalblue;
-    }
-
-    .register-form .submit {
-      border: none;
-      background-color: royalblue;
-      padding: 12px;
-      border-radius: 10px;
-      color: #fff;
-      font-size: 16px;
-      cursor: pointer;
-      margin-top: 5px;
-    }
-
-    .register-form .submit:hover {
-      background-color: rgb(56, 90, 194);
-    }
-
-    @keyframes pulse {
-      from { transform: scale(0.9); opacity: 1; }
-      to { transform: scale(1.8); opacity: 0; }
-    }
-  </style>
+    <link rel="stylesheet" href="s.css">
 </head>
 <body>
 
-  <!-- LOGIN CARD -->
-  <form id="loginCard" class="login-form" onsubmit="handleLogin(event)">
-    <div class="flex-column"><label>Email</label></div>
-    <div class="inputForm">
-      <svg height="20" viewBox="0 0 32 32" width="20"><path fill="#666" d="m30.853 13.87a15 15 0 0 0 -29.729 4.082 15.1 15.1 0 0 0 12.876 12.918 15.6 15.6 0 0 0 2.016.13 14.85 14.85 0 0 0 7.715-2.145 1 1 0 1 0 -1.031-1.711 13.007 13.007 0 1 1 5.458-6.529 2.149 2.149 0 0 1 -4.158-.759v-10.856a1 1 0 0 0 -2 0v1.726a8 8 0 1 0 .2 10.325 4.135 4.135 0 0 0 7.83.274 15.2 15.2 0 0 0 .823-7.455zm-14.853 8.13a6 6 0 1 1 6-6 6.006 6.006 0 0 1 -6 6z"/></svg>
-      <input type="text" class="input" id="loginEmail" placeholder="Enter your Email" required>
-    </div>
-    
-    <div class="flex-column"><label>Password</label></div>
-    <div class="inputForm">
-      <svg height="20" viewBox="-64 0 512 512" width="20"><path fill="#666" d="m336 512h-288c-26.453125 0-48-21.523438-48-48v-224c0-26.476562 21.546875-48 48-48h288c26.453125 0 48 21.523438 48 48v224c0 26.476562-21.546875 48-48 48zm-288-288c-8.8125 0-16 7.167969-16 16v224c0 8.832031 7.1875 16 16 16h288c8.8125 0 16-7.167969 16-16v-224c0-8.832031-7.1875-16-16-16zm0 0"/></svg>        
-      <input type="password" class="input" id="loginPassword" placeholder="Enter your Password" required>
-    </div>
-    
-    <div class="flex-row">
-      <div>
-        <input type="checkbox" id="remember">
-        <label for="remember">Remember me</label>
-      </div>
-      <span class="span-btn">Forgot password?</span>
-    </div>
+    <!-- Header Navigation -->
+     <header class="site-header">
+
+        <div class="container">
+
+            <nav class="main-nav">
+
+                <!-- Logo -->
+
+                <div class="logo">
+
+                    <a href="https://flowhcm.com/">
+
+                        <img src="https://flowhcm.com/wp-content/uploads/2022/11/logo-1.png" alt="FlowHCM Logo">
+
+                    </a>
+
+                </div>
 
 
-    <button type="submit" class="button-submit">Submit</button>
-    <p class="p">Don't have an account? <button type="button" class="span-btn" onclick="toggleForm()">Sign Up</button></p>
-  </form>
 
-  <!-- REGISTER CARD -->
-  <form id="registerCard" class="register-form hidden" onsubmit="handleRegister(event)">
-    <p class="title">Register</p>
-    <p class="message">Signup now and get full access to our app.</p>
-    
-    <div class="flex">
-      <label>
-        <input required placeholder=" " type="text" class="input" id="regFname">
-        <span>Firstname</span>
-      </label>
-      <label>
-        <input required placeholder=" " type="text" class="input" id="regLname">
-        <span>Lastname</span>
-      </label>
-    </div>          
-            
-    <label>
-      <input required placeholder=" " type="email" class="input" id="regEmail">
-      <span>Email</span>
-    </label> 
-        
-    <label>
-      <input required placeholder=" " type="password" class="input" id="regPassword">
-      <span>Password</span>
-    </label>
+                <!-- Navigation Links -->
 
-    <label>
-      <input required placeholder=" " type="password" class="input" id="regCpassword">
-      <span>Confirm password</span>
-    </label>
+                <ul class="nav-links">
 
-    <button type="submit" class="button-submit">Submit</button>
-    <p class="signin">Already have an account? <button type="button" class="span-btn" onclick="toggleForm()">Sign In</button></p>
-  </form>
+                    <li><a href="https://flowhcm.com/">Home</a></li>
 
-  <script>
-    function toggleForm() {
-      document.getElementById('loginCard').classList.toggle('hidden');
-      document.getElementById('registerCard').classList.toggle('hidden');
-    }
+                   
 
-    function handleLogin(e) {
-      e.preventDefault();
-      alert("Login Successful!");
-      window.location.href = "dashboard.html"; 
-    }
+                    <!-- Dropdown Menu -->
 
-    function handleRegister(e) {
-      e.preventDefault();
-      const pass = document.getElementById('regPassword').value;
-      const cpass = document.getElementById('regCpassword').value;
+                    <li class="dropdown">
 
-      if (pass !== cpass) {
-        alert("Passwords do not match!");
-        return;
-      }
-      alert("Registration Successful!");
-      window.location.href = "dashboard.html"; 
-    }
-  </script>
+                        <a href="#" class="dropdown-toggle">Modules <span class="arrow"><i class="fa-solid fa-sort-down"></i></span></a>
+
+                        <div class="mega-menu">
+
+                            <div class="menu-col">
+
+                                <a href="https://flowhcm.com/flowhcm-modules/">
+
+                                    <img src="https://flowhcm.com/wp-content/uploads/2026/04/Piece-Work.svg" alt="Piece Work">
+
+                                    <span>Piece Work Management</span>
+
+                                </a>
+
+                            </div>
+
+                            <div class="menu-col space">
+
+                                <h3>Pakistan’s Fastest Growing HR/HCM Software!</h3>
+
+                                <a href="#" class="btn">View All Modules</a>
+
+                            </div>
+
+                        </div>
+
+                    </li>
+
+
+
+                    <li><a href="#">Clients</a></li>
+
+                    <li><a href="#">Hardware</a></li>
+
+                    <li><a href="#">Contact</a></li>
+
+                </ul>
+
+
+
+                <!-- Right Actions -->
+
+                <div class="nav-actions">
+
+                    <a href="#" class="lang-switch">العربية</a>
+
+                     <a href="login.html"><button id="openModal" class="demo-btn">LOGIN  </button> </a>
+                    
+
+                </div>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero-section">
+        <div class="hero-container">
+            <!-- Left Text Content -->
+            <div class="hero-text">
+                <h1>Best <span>HR Software</span><br>To Manage Your <span>Employees</span></h1>
+                <p>
+                    A complete Human Resource Management System (HRMS) and highly regarded 
+                    on-cloud and on-premise HR Software that covers nearly the entire scope 
+                    of human resource management while being strictly compliant with both local 
+                    and global HR best practices.
+                </p>
+
+
+                <!-- Hero Buttons -->
+                <div class="hero-btns">
+                    <a href="#" class="btn-outline"><i class="fa-regular fa-clone"></i> View All Modules</a>
+                    <button class="btn-primary" id="openModal2">Request A Free Demo</button>
+                </div>
+            </div>
+
+            <!-- Right Visual / Floating Graphics -->
+            <div class="hero-graphics">
+                <img fetchpriority="high" decoding="async" width="650" height="650" src="https://flowhcm.com/wp-content/uploads/2025/05/Homepage-Banner.png" class="attachment-full size-full wp-image-8018" alt="" srcset="https://flowhcm.com/wp-content/uploads/2025/05/Homepage-Banner.png 1000w, https://flowhcm.com/wp-content/uploads/2025/05/Homepage-Banner-300x300.png 300w, https://flowhcm.com/wp-content/uploads/2025/05/Homepage-Banner-80x80.png 80w, https://flowhcm.com/wp-content/uploads/2025/05/Homepage-Banner-768x768.png 768w" sizes="(max-width: 1000px) 100vw, 1000px">
+
+                <!-- Floating Widget 1: Attendance Card -->
+                <div class="widget widget-top-left">
+                    <small>You Signed In Today at 09:25:50 AM</small>
+                    <div class="time">5:55:20</div>
+                    <button class="signout-btn">SIGN OUT</button>
+                </div>
+
+                <!-- Floating Widget 2: Good Rating -->
+                <div class="widget widget-top-right">
+                    <div class="play-circle-small"><i class="fa-brands fa-google-play"></i></div>
+                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <small>GOOD RATING</small>
+                </div>
+
+                <!-- Floating Widget 3: AI Voice Card -->
+                <div class="widget widget-left-mid">
+                    <small class="tag">Pakistan's First Ever AI Based Voice Driven HCMS/HRMS</small>
+                    <div class="mic-icon"><i class="fa-solid fa-microphone"></i></div>
+                    <div class="sound-wave"></div>
+                </div>
+
+                <!-- Floating Widget 4: Payslip Card -->
+                <div class="widget widget-bottom-right" style="width:120px">
+                    <small>Here is your last month payslip</small>
+                    <button class="dl-btn"><i class="fa-solid fa-download"></i> Download Payslip!</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODULES GRID SECTION -->
+    <section class="modules-section">
+        <div class="modules-container">
+            <h2 class="section-title">FlowHCM Top Modules</h2>
+
+            <div class="modules-grid">
+                <!-- 1. Employee -->
+                <div class="module-card">
+                    <div class="icon-box"><i class="fa-solid fa-users"></i></div>
+                    <div class="module-info">
+                        <h3>Employee</h3>
+                        <p>Streamline Workforce Data and Operations</p>
+                    </div>
+                </div>
+
+                <!-- 2. Attendance -->
+                <div class="module-card">
+                    <div class="icon-box"><i class="fa-regular fa-clock"></i></div>
+                    <div class="module-info">
+                        <h3>Attendance</h3>
+                        <p>Efficiently Track Employee Attendance</p>
+                    </div>
+                </div>
+
+                <!-- 3. Leave -->
+                <div class="module-card">
+                    <div class="icon-box"><i class="fa-regular fa-calendar-check"></i></div>
+                    <div class="module-info">
+                        <h3>Leave</h3>
+                        <p>Effortless Leave Tracking and Approvals</p>
+                    </div>
+                </div>
+
+                <!-- 4. Payroll -->
+                <div class="module-card">
+                    <div class="icon-box"><i class="fa-solid fa-calculator"></i></div>
+                    <div class="module-info">
+                        <h3>Payroll</h3>
+                        <p>Effortless Payroll Processing & Reporting</p>
+                    </div>
+                </div>
+
+                <!-- 5. Separation -->
+                <div class="module-card">
+                    <div class="icon-box"><i class="fa-solid fa-user-xmark"></i></div>
+                    <div class="module-info">
+                        <h3>Separation</h3>
+                        <p>Smooth Employee Departures with complete formalities</p>
+                    </div>
+                </div>
+
+                <!-- 6. Recruitment -->
+                <div class="module-card">
+                    <div class="icon-box"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+                    <div class="module-info">
+                        <h3>Recruitment</h3>
+                        <p>Elevate Your Hiring Process with advanced ATS</p>
+                    </div>
+                </div>
+
+                <!-- 7. Performance -->
+                <div class="module-card">
+                    <div class="icon-box"><i class="fa-solid fa-chart-line"></i></div>
+                    <div class="module-info">
+                        <h3>Performance</h3>
+                        <p>Quick & Easy Appraisal Management</p>
+                    </div>
+                </div>
+
+                <!-- 8. Help Desk -->
+                <div class="module-card">
+                    <div class="icon-box"><i class="fa-solid fa-headset"></i></div>
+                    <div class="module-info">
+                        <h3>Help Desk</h3>
+                        <p>Simplify & Track Internal Support Processes</p>
+                    </div>
+                </div>
+
+                <!-- 9. Expense -->
+                <div class="module-card">
+                    <div class="icon-box"><i class="fa-solid fa-receipt"></i></div>
+                    <div class="module-info">
+                        <h3>Expense</h3>
+                        <p>Control and Track Employee Expenses</p>
+                    </div>
+                </div>
+
+                <!-- 10. HR Letters -->
+                <div class="module-card">
+                    <div class="icon-box"><i class="fa-regular fa-envelope"></i></div>
+                    <div class="module-info">
+                        <h3>HR Letters</h3>
+                        <p>Effortless HR Communication and Documentation</p>
+                    </div>
+                </div>
+
+                <!-- 11. Training -->
+                <div class="module-card">
+                    <div class="icon-box"><i class="fa-solid fa-chalkboard-user"></i></div>
+                    <div class="module-info">
+                        <h3>Training</h3>
+                        <p>Streamline Employee Skill Development</p>
+                    </div>
+                </div>
+
+                <!-- 12. Manpower -->
+                <div class="module-card">
+                    <div class="icon-box"><i class="fa-solid fa-diagram-project"></i></div>
+                    <div class="module-info">
+                        <h3>Manpower</h3>
+                        <p>Efficient Workforce Planning and Budgeting</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="center-btn-wrap">
+                <a href="#" class="btn-primary-small"><i class="fa-regular fa-clone"></i> View All Modules</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- STATS TRANSFORMATION SECTION -->
+    <section class="transformation-section">
+        <div class="container">
+            <h2 class="section-heading">A Revolutionary Transformation In The HR Industry</h2>
+            <p class="section-subtext">
+                Recognized as one of the fastest-growing HRMS in Pakistan, FlowHCM has been at the forefront of innovation in the Human Resource Software industry. Its footprint extends internationally with rapid HR software implementations. FlowHCM continues to set benchmarks as a user-friendly and scalable HR Management System trusted by businesses in Pakistan and beyond.
+            </p>
+
+            <!-- Stats Grid -->
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <h3>1,400+</h3>
+                    <p>Active Customers</p>
+                </div>
+                <div class="stat-box">
+                    <h3>6 Billion+</h3>
+                    <p>PKR Payroll Processed</p>
+                </div>
+                <div class="stat-box">
+                    <h3>300K+</h3>
+                    <p>App Downloads</p>
+                </div>
+                <div class="stat-box">
+                    <h3>A+</h3>
+                    <p>Rating</p>
+                </div>
+                <div class="stat-box">
+                    <h3>800,000+</h3>
+                    <p>Users</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CERTIFICATIONS SECTION -->
+    <section class="certifications-section">
+        <div class="container">
+            <h2 class="section-heading">Certifications</h2>
+            <p class="section-subtext">Our certifications serve as evidence of our commitment to delivering high-quality business solutions.</p>
+
+            <div class="cert-grid">
+                <!-- Cert 1 -->
+                <div class="cert-card">
+                    <img width="150" height="150" decoding="async" src="https://flowhcm.com/wp-content/uploads/2023/08/27001-c.webp" title="27001-c.webp" alt="27001-c.webp" data-lazy-src="https://flowhcm.com/wp-content/uploads/2023/08/27001-c.webp" data-ll-status="loaded" class="entered lazyloaded">
+                </div>
+                <!-- Cert 2 -->
+                <div class="cert-card">
+                     <img decoding="async" width="234" height="216" src="https://flowhcm.com/wp-content/uploads/2023/08/psb.webp" class="attachment-large size-large wp-image-5526 entered lazyloaded" alt="" data-lazy-src="https://flowhcm.com/wp-content/uploads/2023/08/psb.webp" data-ll-status="loaded">
+                </div>
+                <!-- Cert 3 -->
+                <div class="cert-card">
+                <img decoding="async" width="275" height="90" src="https://flowhcm.com/wp-content/uploads/2023/08/pash.webp" class="attachment-large size-large wp-image-5527 entered lazyloaded" alt="" data-lazy-src="https://flowhcm.com/wp-content/uploads/2023/08/pash.webp" data-ll-status="loaded">
+                </div>
+
+                <!-- Cert 4 -->
+                <div class="cert-card">
+                    <img width="150" height="150" decoding="async" src="https://flowhcm.com/wp-content/uploads/2023/08/27001-c.webp" title="27001-c.webp" alt="27001-c.webp" data-lazy-src="https://flowhcm.com/wp-content/uploads/2023/08/27001-c.webp" data-ll-status="loaded" class="entered lazyloaded">
+                </div>
+                <!-- Cert 5 -->
+                <div class="cert-card">
+                    <img decoding="async" width="150" height="150" src="https://flowhcm.com/wp-content/uploads/2023/08/sep-logo.webp" class="attachment-large size-large wp-image-5529 entered lazyloaded" alt="" data-lazy-srcset="https://flowhcm.com/wp-content/uploads/2023/08/sep-logo.webp 150w, https://flowhcm.com/wp-content/uploads/2023/08/sep-logo-80x80.webp 80w" data-lazy-sizes="(max-width: 150px) 100vw, 150px" data-lazy-src="https://flowhcm.com/wp-content/uploads/2023/08/sep-logo.webp" data-ll-status="loaded" sizes="(max-width: 150px) 100vw, 150px" srcset="https://flowhcm.com/wp-content/uploads/2023/08/sep-logo.webp 150w, https://flowhcm.com/wp-content/uploads/2023/08/sep-logo-80x80.webp 80w">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CLIENTS / ORGANIZATIONS LOGOS SECTION -->
+    <section class="clients-section">
+        <div class="container">
+            <h2 class="section-heading">Over 1,400+ Organizations Rely On FlowHCM</h2>
+            <div class="heading-line"></div>
+        </div>
+    </section>
+
+    <!-- FOOTER SECTION -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                
+                <!-- Column 1: Logo & About -->
+                <div class="footer-col">
+                    <h4 class="footer-title">FlowHCM – Fastest Growing HR Software</h4>
+                    <div class="footer-logo">
+                        <img src="https://flowhcm.com/wp-content/uploads/2022/11/flowhcm-logo-white.png" alt="FlowHCM" onerror="this.src='https://via.placeholder.com/150?text=FlowHCM'">
+                    </div>
+                    <p class="footer-desc">
+                        Fastest Growing Complete Human Capital Management Software with 18 Super Modules Developed By Impetus Systems Pvt Ltd.
+                    </p>
+                    <div class="footer-app-badges">
+                        <img  src="https://flowhcm.com/wp-content/uploads/2022/11/all-buttons-google-03.svg" class="attachment-thumbnail size-thumbnail wp-image-5559 entered lazyloaded" alt="" data-lazy-src="https://flowhcm.com/wp-content/uploads/2022/11/all-buttons-google-03.svg" data-ll-status="loaded">
+                        <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play"></a>
+                    </div>
+                </div>
+
+                <!-- Column 2: Top Modules -->
+                <div class="footer-col">
+                    <h4 class="footer-title">Top Modules</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Expense Management</a></li>
+                        <li><a href="#">Help Desk Management</a></li>
+                        <li><a href="#">HR Letters Management</a></li>
+                        <li><a href="#">Leave Management</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: Navigate -->
+                <div class="footer-col">
+                    <h4 class="footer-title">Navigate</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About us</a></li>
+                        <li><a href="#">Clients</a></li>
+                        <li><a href="#">Blogs</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Modules</a></li>
+                        <li><a href="#">Resellers</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 4: Connect With Us -->
+                <div class="footer-col">
+                    <h4 class="footer-title">Connect With Us</h4>
+                    <ul class="footer-contact">
+                        <li><i class="fa-solid fa-phone"></i> +92 347 021 3620</li>
+                        <li><i class="fa-solid fa-phone"></i> +92 318 374 2692</li>
+                        <li><i class="fa-solid fa-phone"></i> +255 768 511 111</li>
+                        <li><i class="fa-solid fa-envelope"></i> sales@flowhcm.com</li>
+                        <li><i class="fa-solid fa-globe"></i> www.flowhcm.com</li>
+                    </ul>
+                    <div class="footer-socials">
+                        <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+                    </div>
+                </div>
+
+                <!-- Column 5: Visit Us -->
+                <div class="footer-col">
+                    <h4 class="footer-title">Visit Us</h4>
+                    <ul class="footer-address">
+                        <li>
+                            <i class="fa-solid fa-location-dot"></i>
+                            <span><strong>United States :</strong> 3200 Wilcrest Drive Suite 575 Houston, TX 77042</span>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-location-dot"></i>
+                            <span><strong>Pakistan :</strong> Office No. 401, 4th Floor, Business Arcade Near Lal Kothi, PECHS Block VI, Shahrah-e-Faisal, Karachi-75400</span>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-location-dot"></i>
+                            <span><strong>Pakistan-2:</strong> House Number 114-G4, Johar Town, Lahore</span>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-location-dot"></i>
+                            <span><strong>Saudi Arabia :</strong> Building No. 7783, Ibn Katheer St, King Abdul Aziz, Riyadh 13334, Saudi Arabia</span>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-location-dot"></i>
+                            <span><strong>Tanzania :</strong> Dymax Business Technologies, Millennium Towers Phase II, Po Box 14636, Dar es Salaam, Tanzania</span>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- Footer Bottom Bar -->
+            <div class="footer-bottom">
+                <p>Copyright © 2026 Impetus Systems (Pvt) Ltd</p>
+            </div>
+        </div>
+    </footer>
+
 </body>
 </html>
