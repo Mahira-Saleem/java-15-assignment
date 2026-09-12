@@ -1,27 +1,252 @@
- *{ box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
-    body { display: flex; height: 100vh; background-color: #0f172a; color: #f8fafc; }
+:root { 
+  /* FlowHCM Image Exact Color Palette */
+  --nav-bg: #ffffff;               /* Pure White Navbar */
+  --nav-text: #1b2a4a;             /* Dark Navy Links */
+  --hero-bg: #7ab2d6;              /* Screenshot Main Sky Blue */
+  --primary-blue: #0077b6;         /* "Request Demo" & Sign Out Button Blue */
+  --deep-blue: #005689;            /* Center Image Circle & Dark Text Accent */
+  --card-bg: #ffffff;              /* Floating Widgets Pure White */
+  --card-text: #1b2a4a;            /* Card Body Text */
+  --accent-red: #82193a;           /* Customer Badges Accent */
+  --border-color: #e2e8f0;
+}  
 
-    /* Vertical Sidebar */
-    .sidebar { width: 220px; background-color: #1e293b; padding: 20px; display: flex; flex-direction: column; justify-content: space-between; }
-    .sidebar h2 { font-size: 18px; margin-bottom: 20px; color: #38bdf8; }
-    .menu a { display: block; color: #94a3b8; text-decoration: none; padding: 10px 0; margin-bottom: 5px; }
-    .menu a.active, .menu a:hover { color: #ffffff; font-weight: bold; }
-    .logout-btn { background: #ef4444; color: white; border: none; padding: 10px; width: 100%; border-radius: 5px; cursor: pointer; }
+.dark { 
+  /* Dark Mode adaptation for FlowHCM Theme */
+  --nav-bg: #0f172a;               /* Dark Slate Navbar */
+  --nav-text: #e2e8f0;
+  --hero-bg: #111e38;              /* Deep Slate Blue Night */
+  --primary-blue: #38bdf8;         /* Vibrant Neon Blue for Dark Mode */
+  --deep-blue: #0284c7;
+  --card-bg: #1e293b;              /* Dark Card Surfaces */
+  --card-text: #f8fafc;
+  --accent-red: #a1214a;
+  --border-color: #334155;
+}
 
-    /* Main Area */
-    .main-content { flex: 1; padding: 30px; overflow-y: auto; }
-    .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-    .add-btn { background: #3b82f6; color: white; border: none; padding: 10px 15px; border-radius: 15px; cursor: pointer; }
+* { 
+  box-sizing: border-box; 
+  margin: 0; 
+  padding: 0; 
+  font-family: Arial, sans-serif; 
+}
 
-    /* Table Styling */
-    table { width: 100%; border-collapse: collapse; background: #1e293b; border-radius: 8px; overflow: hidden; }
-    th, td { padding: 12px 15px; text-align: left; border-bottom: 1px solid #334155; }
-    th { background-color: #334155; color: #94a3b8; }
-    
-    .action-btn { padding: 5px 10px; margin-right: 5px; border: none; border-radius: 3px; cursor: pointer; }
-    .view-btn { background: #0ea5e9; color: white; }
-    .delete-btn { background: #f43f5e; color: white; }
+body { 
+  display: flex; 
+  height: 100vh; 
+  margin: 0; 
+  padding: 0; 
+  background-color: var(--background); 
+  color: var(--text); 
+  transition: background-color 0.3s ease, color 0.3s ease; 
+} 
 
-    .form-container { background: #1e293b; padding: 15px; border-radius: 8px; margin-bottom: 20px; display: none; }
-    .form-container input { padding: 8px; margin-right: 10px; border-radius: 4px; border: 1px solid #475569; background: #0f172a; color: white; }
-    .save-btn { background: #22c55e; color: white; border: none; padding: 8px 15px; border-radius: 4px; cursor: pointer; }
+/* Vertical Sidebar */
+.sidebar { 
+  width: 220px; 
+  background: var(--sidebar-bg); 
+  padding: 20px; 
+  display: flex; 
+  flex-direction: column; 
+  justify-content: space-between; 
+  transition: background 0.3s ease;
+}
+
+.sidebar h2 { 
+  font-size: 18px; 
+  margin-bottom: 20px; 
+  color: #38bdf8; 
+}
+
+.menu a { 
+  display: block; 
+  color: var(--sidebar-text); 
+  text-decoration: none; 
+  padding: 10px 0; 
+  margin-bottom: 5px; 
+}
+
+.menu a.active, .menu a:hover { 
+  color: #ffffff; 
+  font-weight: bold; 
+}
+
+.logout-btn { 
+  background: #ef4444; 
+  color: white; 
+  border: none; 
+  padding: 10px; 
+  width: 100%; 
+  border-radius: 5px; 
+  cursor: pointer; 
+}
+
+/* Main Area */
+.main-content { 
+  flex: 1; 
+  padding: 30px; 
+  overflow-y: auto; 
+}
+
+.header { 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  margin-bottom: 20px; 
+}
+
+.add-btn { 
+  background: var(--btn-bg); 
+  color: white; 
+  border: none; 
+  padding: 10px 15px; 
+  border-radius: 15px; 
+  cursor: pointer; 
+  transition: background 0.3s ease;
+}
+
+.add-btn:hover {
+  background: var(--btn-hover);
+}
+
+/* Table Styling */
+table { 
+  width: 100%; 
+  border-collapse: collapse; 
+  background: var(--container-bg); 
+  border-radius: 8px; 
+  overflow: hidden; 
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s ease;
+}
+
+th, td { 
+  padding: 12px 15px; 
+  text-align: left; 
+  border-bottom: 1px solid var(--table-border); 
+}
+
+th { 
+  background-color: var(--th-bg); 
+  color: var(--text); 
+}
+
+.action-btn { 
+  padding: 5px 10px; 
+  margin-right: 5px; 
+  border: none; 
+  border-radius: 3px; 
+  cursor: pointer; 
+}
+
+.view-btn { 
+  background: #0ea5e9; 
+  color: white; 
+}
+
+.delete-btn { 
+  background: #f43f5e; 
+  color: white; 
+}
+
+/* Form Styling */
+.form-container { 
+  background: var(--container-bg); 
+  padding: 15px; 
+  border-radius: 8px; 
+  margin-bottom: 20px; 
+  display: none; 
+  border: 1px solid var(--table-border);
+  transition: background 0.3s ease;
+}
+
+.form-container input { 
+  padding: 8px; 
+  margin-right: 10px; 
+  border-radius: 4px; 
+  border: 1px solid var(--input-border); 
+  background: var(--input-bg); 
+  color: var(--text); 
+}
+
+.save-btn { 
+  background: #22c55e; 
+  color: white; 
+  border: none; 
+  padding: 8px 15px; 
+  border-radius: 4px; 
+  cursor: pointer; 
+}
+
+/* From Uiverse.io by rishichawda */ 
+#theme-toggle-button {
+  font-size: 17px;
+  position: relative;
+  display: inline-block;
+  width: 7em;
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+/* Hide default HTML checkbox */
+#toggle {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+#container,
+#patches,
+#stars,
+#button,
+#sun,
+#moon,
+#cloud {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 0.25s;
+}
+
+/* night sky background */
+#toggle:checked + svg #container {
+  fill: #2b4360;
+}
+
+/* move button to right when checked */
+#toggle:checked + svg #button {
+  transform: translate(28px, 2.333px);
+}
+
+/* show/hide sun and moon based on checkbox state */
+#sun {
+  opacity: 1;
+}
+
+#toggle:checked + svg #sun {
+  opacity: 0;
+}
+
+#moon {
+  opacity: 0;
+}
+
+#toggle:checked + svg #moon {
+  opacity: 1;
+}
+
+/* show or hide background items on checkbox state */
+#cloud {
+  opacity: 1;
+}
+
+#toggle:checked + svg #cloud {
+  opacity: 0;
+}
+
+#stars {
+  opacity: 0;
+}
+
+#toggle:checked + svg #stars {
+  opacity: 1;
+}
