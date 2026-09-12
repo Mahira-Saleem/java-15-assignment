@@ -111,19 +111,16 @@ function logout() {
   window.location.href = "login.html";
 }
 
-// Theme Toggle Functionality
 document.addEventListener('DOMContentLoaded', () => {
   const toggleBtn = document.getElementById('toggle');
   
   if (toggleBtn) {
-    // LocalStorage se saved theme restore karna
     const currentTheme = localStorage.getItem('theme');
     if (currentTheme === 'dark') {
       document.body.classList.add('dark');
       toggleBtn.checked = true;
     }
 
-    // Toggle switch handler
     toggleBtn.addEventListener('change', function() {
       if (this.checked) {
         document.body.classList.add('dark');
@@ -135,6 +132,5 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Page load hone par table render karna
   renderEmployees();
 });

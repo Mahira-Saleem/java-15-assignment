@@ -38,20 +38,18 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Dropdown / Mega Menu Toggle for Mobile/Touch Support
+    // Dropdown 
     const dropdownToggle = document.querySelector(".dropdown-toggle");
     const dropdownLi = document.querySelector(".dropdown");
 
     if (dropdownToggle && dropdownLi) {
         dropdownToggle.addEventListener("click", (e) => {
-            // Prevent default anchor behavior if it's just a toggle link
             if (dropdownToggle.getAttribute("href") === "#") {
                 e.preventDefault();
             }
             dropdownLi.classList.toggle("active");
         });
 
-        // Close dropdown when clicking outside
         window.addEventListener("click", (e) => {
             if (!dropdownLi.contains(e.target)) {
                 dropdownLi.classList.remove("active");

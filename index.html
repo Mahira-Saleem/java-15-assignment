@@ -102,21 +102,6 @@
       margin: 5px 0;
     }
 
-    .login-form .btn {
-      margin-top: 10px;
-      width: 100%;
-      height: 40px;
-      border-radius: 10px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-weight: 500;
-      gap: 10px;
-      border: 1px solid #ededef;
-      background-color: white;
-      cursor: pointer;
-    }
-
     /* --- REGISTER STYLES --- */
     .register-form {
       display: flex;
@@ -236,7 +221,6 @@
 <body>
 
   <!-- LOGIN CARD -->
-
   <form id="loginCard" class="login-form" onsubmit="handleLogin(event)">
     <div class="flex-column"><label>Email</label></div>
     <div class="inputForm">
@@ -258,11 +242,12 @@
       <span class="span-btn">Forgot password?</span>
     </div>
 
-    <button type="submit" class="button-submit">Sign In</button>
+
+    <button type="submit" class="button-submit">Submit</button>
     <p class="p">Don't have an account? <button type="button" class="span-btn" onclick="toggleForm()">Sign Up</button></p>
   </form>
 
-
+  <!-- REGISTER CARD -->
   <form id="registerCard" class="register-form hidden" onsubmit="handleRegister(event)">
     <p class="title">Register</p>
     <p class="message">Signup now and get full access to our app.</p>
@@ -276,7 +261,7 @@
         <input required placeholder=" " type="text" class="input" id="regLname">
         <span>Lastname</span>
       </label>
-    </div>  
+    </div>          
             
     <label>
       <input required placeholder=" " type="email" class="input" id="regEmail">
@@ -293,13 +278,11 @@
       <span>Confirm password</span>
     </label>
 
-    <button type="submit" class="submit">Submit</button>
+    <button type="submit" class="button-submit">Submit</button>
     <p class="signin">Already have an account? <button type="button" class="span-btn" onclick="toggleForm()">Sign In</button></p>
   </form>
 
   <script>
-   
-
     function toggleForm() {
       document.getElementById('loginCard').classList.toggle('hidden');
       document.getElementById('registerCard').classList.toggle('hidden');
@@ -308,6 +291,7 @@
     function handleLogin(e) {
       e.preventDefault();
       alert("Login Successful!");
+      window.location.href = "dashboard.html"; 
     }
 
     function handleRegister(e) {
@@ -317,14 +301,11 @@
 
       if (pass !== cpass) {
         alert("Passwords do not match!");
-        window.location.href = "landing.html"; 
         return;
       }
       alert("Registration Successful!");
-      toggleForm(); 
+      window.location.href = "dashboard.html"; 
     }
-
-    </script>
-    <a href="landing.html">kjhgfd</a>
+  </script>
 </body>
 </html>

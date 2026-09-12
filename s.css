@@ -147,10 +147,11 @@ body {
     background-color: #0170B9;
     color: white;
     border: none;
-    padding: 10px 20px;
+    font-size: 20px;
+    padding: 10px 40px;
     border-radius: 20px;
     cursor: pointer;
-    font-weight: 600;
+    font-weight: 400;
     transition: background 0.2s ease;
 }
 
@@ -431,14 +432,10 @@ body {
     transform: translateY(0);
   }
   50% {
-    transform: translateY(-8px); /* 8px uper ki taraf smoothly move hoga */
+    transform: translateY(-8px); 
   }
 }
 
-
-/* =================================================== */
-/* MODULES GRID SECTION STYLES                         */
-/* =================================================== */
 
 .modules-section {
     padding: 60px 20px;
@@ -532,9 +529,6 @@ body {
     }
 }
 
-/* =================================================== */
-/* TRANSFORMATION & STATS SECTION                      */
-/* =================================================== */
 .transformation-section {
     padding: 70px 20px;
     background-color: #ffffff;
@@ -584,9 +578,6 @@ body {
     font-weight: 600;
 }
 
-/* =================================================== */
-/* CERTIFICATIONS SECTION                              */
-/* =================================================== */
 .certifications-section {
     padding: 60px 20px;
     background-color: #f8fafc;
@@ -625,9 +616,6 @@ body {
     object-fit: contain;
 }
 
-/* =================================================== */
-/* CLIENTS LOGOS SECTION                               */
-/* =================================================== */
 .clients-section {
     padding: 70px 20px;
     background-color: #ffffff;
@@ -670,4 +658,128 @@ body {
     max-width: 100%;
     max-height: 40px;
     object-fit: contain;
+}
+
+.site-footer {
+    background-color: #0170B9;
+    color: #ffffff;
+    padding: 60px 20px 20px 20px;
+    font-size: 13px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1.2fr 2fr;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.footer-title {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 8px;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.4);
+}
+
+.footer-logo img {
+    height: 35px;
+    margin-bottom: 15px;
+}
+
+.footer-desc {
+    font-size: 12px;
+    line-height: 1.5;
+    margin-bottom: 15px;
+    opacity: 0.9;
+}
+
+.footer-app-badges {
+    display: flex;
+    gap: 10px;
+}
+
+.footer-app-badges img {
+    height: 32px;
+}
+
+.footer-links, .footer-contact, .footer-address {
+    list-style: none;
+}
+
+.footer-links li {
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    color: #ffffff;
+    text-decoration: none;
+    opacity: 0.85;
+    transition: opacity 0.2s;
+}
+
+.footer-links a:hover {
+    opacity: 1;
+    text-decoration: underline;
+}
+
+.footer-contact li, .footer-address li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 12px;
+    opacity: 0.9;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.footer-contact i, .footer-address i {
+    margin-top: 3px;
+}
+
+.footer-socials {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.footer-socials a {
+    width: 28px;
+    height: 28px;
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    text-decoration: none;
+    font-size: 12px;
+    transition: background 0.2s;
+}
+
+.footer-socials a:hover {
+    background: #ffffff;
+    color: #0170B9;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 12px;
+    opacity: 0.8;
+}
+
+/* Responsive Support for Footer */
+@media (max-width: 1024px) {
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 680px) {
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
 }
