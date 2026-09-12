@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const demoForm = document.getElementById("demoForm");
 
     // Open Modal
+    
     if (openModalBtn && demoModal) {
         openModalBtn.addEventListener("click", () => {
             demoModal.style.display = "flex";
